@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, CellSelectedDelegate {
+class ViewController: UIViewController, CellSelectedDelegate, DataUpdateDelegate{
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var senderLabel: UILabel!
     @IBOutlet weak var contentsLabel: UILabel!
@@ -29,5 +29,18 @@ class ViewController: UIViewController, CellSelectedDelegate {
         senderLabel.text = email.sender
         contentsLabel.text = email.contents
     }
+	func delete (emails: [Email], currentEmail : Email){
+		delete(currentEmail)
+		
+	}
+	func send (emails: [Email], currentEmail : Email){
+		send(emails: emails, currentEmail: currentEmail)
+	}
+	/*
+	func AddEmail(emails: [Email], currentEmail : Email){
+		append
+	}
+*/
+	
 }
 

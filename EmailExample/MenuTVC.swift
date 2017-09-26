@@ -12,7 +12,10 @@ class MenuTVC: UITableViewController {
     
     var dataDictionary: [String:Array<Email>] = [:]
     var selectedRow = ""
-
+	var delegate : CellSelectedDelegate?
+	var delegate2: DataUpdateDelegate?
+	
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,12 +35,14 @@ class MenuTVC: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+		// let keywords = Array(dataDictionary.keys)
+		return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+		 let keywords = Array(dataDictionary.keys)
+		return 1
     }
 
     
@@ -113,6 +118,11 @@ class MenuTVC: UITableViewController {
         
         //1. which button got pressed
         //2. up-to-date data
+		
+		// added this for the delegate:
+		
+		destVC.delegate = delegate
+
         
         print("In prepare")
     }

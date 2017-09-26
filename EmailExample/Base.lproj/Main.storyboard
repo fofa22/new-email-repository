@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Hei-um-bYb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Hei-um-bYb">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -64,7 +64,7 @@
             </objects>
             <point key="canvasLocation" x="301.60000000000002" y="170.46476761619192"/>
         </scene>
-        <!--Email-->
+        <!--fashour@asu.edu-->
         <scene sceneID="qbf-cS-bGn">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="aQd-eh-QS2" customClass="MenuTVC" customModule="EmailExample" customModuleProvider="target" sceneMemberID="viewController">
@@ -96,7 +96,7 @@
                             <outlet property="delegate" destination="aQd-eh-QS2" id="fyb-t3-X8u"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Email" id="zem-jU-hiM"/>
+                    <navigationItem key="navigationItem" title="fashour@asu.edu" id="zem-jU-hiM"/>
                     <connections>
                         <segue destination="L9c-r4-5g4" kind="show" identifier="cellSelected" id="yNd-pB-5dv"/>
                     </connections>

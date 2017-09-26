@@ -11,11 +11,18 @@ import UIKit
 protocol CellSelectedDelegate {
     func read(email: Email)
 }
+protocol DataUpdateDelegate {
+	func delete (emails: [Email], currentEmail : Email)
+	func send (emails: [Email], currentEmail : Email)
+	// func AddEmail(emails: [Email], currentEmail : Email)
+	
+}
 
 class RootTVC: UITableViewController {
-    
+    var dataDictionary: [String:Array<Email>] = [:]
     var emails = [Email]()
     var delegate: CellSelectedDelegate?
+	var delegate2: DataUpdateDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +31,7 @@ class RootTVC: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+         self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,6 +58,7 @@ class RootTVC: UITableViewController {
         let selectedEmail = emails[indexPath.row]
         delegate?.read(email: selectedEmail)
     }
+	
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -73,17 +81,27 @@ class RootTVC: UITableViewController {
     }
     */
 
-    /*
+	
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+		
         if editingStyle == .delete {
             // Delete the row from the data source
+			let selectedEmail = emails[indexPath.row]
+			delegate2?.delete(emails: emails, currentEmail: selectedEmail)
+			delegate2?.send(emails: emails, currentEmail: selectedEmail)
             tableView.deleteRows(at: [indexPath], with: .fade)
+			
+			
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+			let test = Email(sender: "asu@asu.edu", subject: "Spam", contents: "Spam")
+			emails.append(test)
+			
+			//tableView.insertRows(at: dataDictionary[indexPath.row]!, with: .fade)
         }    
     }
-    */
+
 
     /*
     // Override to support rearranging the table view.
