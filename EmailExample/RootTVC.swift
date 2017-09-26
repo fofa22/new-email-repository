@@ -12,9 +12,9 @@ protocol CellSelectedDelegate {
     func read(email: Email)
 }
 protocol DataUpdateDelegate {
-	func delete (emails: [Email], currentEmail : Email)
+	func delete (emails: [Email], currentEmail : Email, indexPath : IndexPath)
 	func send (emails: [Email], currentEmail : Email)
-	// func AddEmail(emails: [Email], currentEmail : Email)
+	func AddEmail(emails: [Email], currentEmail : Email, indexPath : IndexPath)
 	
 }
 
@@ -23,15 +23,24 @@ class RootTVC: UITableViewController {
     var emails = [Email]()
     var delegate: CellSelectedDelegate?
 	var delegate2: DataUpdateDelegate?
+	
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+		self.navigationItem.title = "Inbox"
+		//self.navigationItem.title = "Trash"
+		//self.navigationItem.title = "Sent"
+			//self.navigationItem.title = keywords[indexPath.row]
+		
+		
+		// "YourTitle"
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
          self.navigationItem.rightBarButtonItem = self.editButtonItem
+		
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,6 +66,7 @@ class RootTVC: UITableViewController {
         
         let selectedEmail = emails[indexPath.row]
         delegate?.read(email: selectedEmail)
+	
     }
 	
 
@@ -65,9 +75,11 @@ class RootTVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
         // Configure the cell...
+		
         let currentEmail = emails[indexPath.row]
         cell.textLabel?.text = currentEmail.subject
         cell.detailTextLabel?.text = currentEmail.sender
+		
 
         return cell
     }
@@ -88,17 +100,24 @@ class RootTVC: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
 			let selectedEmail = emails[indexPath.row]
-			delegate2?.delete(emails: emails, currentEmail: selectedEmail)
+			emails.remove(at: indexPath.row)
+			 delegate2?.delete(emails: emails, currentEmail: selectedEmail, indexPath: indexPath )
 			delegate2?.send(emails: emails, currentEmail: selectedEmail)
             tableView.deleteRows(at: [indexPath], with: .fade)
 			
 			
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+			
 			let test = Email(sender: "asu@asu.edu", subject: "Spam", contents: "Spam")
+			
 			emails.append(test)
 			
-			//tableView.insertRows(at: dataDictionary[indexPath.row]!, with: .fade)
+			emails.insert(test, at: indexPath.row)
+			delegate2?.AddEmail(emails: emails, currentEmail: test, indexPath: indexPath )
+			
+			
+			//tableView.insertRows(at: [indexPath.row], with: .fade)
         }    
     }
 

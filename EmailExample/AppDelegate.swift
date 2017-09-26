@@ -38,6 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let detailVC = splitVC.viewControllers.last as! ViewController
 		
 		menuTVC.delegate = detailVC
+		
+		// menuTVC.delegate2 = menuTVC as! DataUpdateDelegate!
         
         return true
     }

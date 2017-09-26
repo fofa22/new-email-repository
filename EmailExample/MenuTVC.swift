@@ -36,13 +36,13 @@ class MenuTVC: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
 		// let keywords = Array(dataDictionary.keys)
-		return 3
+		return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
 		 let keywords = Array(dataDictionary.keys)
-		return 1
+		return 3
     }
 
     
@@ -123,6 +123,7 @@ class MenuTVC: UITableViewController {
 		
 		destVC.delegate = delegate
 
+		 destVC.delegate2 = delegate2
         
         print("In prepare")
     }

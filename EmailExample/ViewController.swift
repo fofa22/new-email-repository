@@ -12,7 +12,8 @@ class ViewController: UIViewController, CellSelectedDelegate, DataUpdateDelegate
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var senderLabel: UILabel!
     @IBOutlet weak var contentsLabel: UILabel!
-
+	
+	var dataDictionary: [String:Array<Email>] = [:]
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -29,18 +30,25 @@ class ViewController: UIViewController, CellSelectedDelegate, DataUpdateDelegate
         senderLabel.text = email.sender
         contentsLabel.text = email.contents
     }
-	func delete (emails: [Email], currentEmail : Email){
+	func delete (emails: [Email], currentEmail : Email, indexPath : IndexPath){
+		//dataDictionary.remove(at: dataDictionary<"Inbox", emails<currentEmail>>.indexPath)
+		var emails = emails
 		delete(currentEmail)
+		
+		emails.remove(at: indexPath.row)
 		
 	}
 	func send (emails: [Email], currentEmail : Email){
 		send(emails: emails, currentEmail: currentEmail)
 	}
-	/*
-	func AddEmail(emails: [Email], currentEmail : Email){
-		append
+	
+	func AddEmail(emails: [Email], currentEmail : Email, indexPath : IndexPath){
+	var emails = emails
+		
+		emails.insert(currentEmail, at: indexPath.row)
 	}
-*/
+
+
 	
 }
 
