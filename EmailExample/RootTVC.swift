@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol CellSelectedDelegate {
+protocol CellSelectedDelegate{
     func read(email: Email)
 }
 protocol DataUpdateDelegate {
@@ -40,6 +40,7 @@ class RootTVC: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
          self.navigationItem.rightBarButtonItem = self.editButtonItem
 		
+		
 
     }
 
@@ -57,6 +58,7 @@ class RootTVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+	
         return emails.count
     }
     

@@ -8,13 +8,13 @@
 
 import UIKit
 
-class MenuTVC: UITableViewController {
+class MenuTVC: UITableViewController{
     
     var dataDictionary: [String:Array<Email>] = [:]
     var selectedRow = ""
 	var delegate : CellSelectedDelegate?
 	var delegate2: DataUpdateDelegate?
-	
+	 var emails = [Email]()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +40,7 @@ class MenuTVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-		 let keywords = Array(dataDictionary.keys)
+		
 		return 3
     }
 
@@ -121,8 +121,13 @@ class MenuTVC: UITableViewController {
 		// added this for the delegate:
 		
 		destVC.delegate = delegate
-
-		 destVC.delegate2 = delegate2
+		
+		// new
+		
+		let destVC2 = segue.destination as! RootTVC
+		destVC2.emails = dataDictionary[selectedRow]!
+		
+		 destVC2.delegate2 = delegate2
         
         print("In prepare")
     }

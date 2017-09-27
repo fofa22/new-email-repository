@@ -21,4 +21,5 @@ class Email {
         self.subject = subject
         self.contents = contents
     }
+	
 }
