@@ -123,7 +123,7 @@ class MenuTVC: UITableViewController{
 		destVC.delegate = delegate
 		
 		// new
-		
+	/*
 	let destVC2 = segue.destination as! RootTVC
 		destVC2.emails = dataDictionary[selectedRow]!
 		
@@ -133,5 +133,8 @@ class MenuTVC: UITableViewController{
         print("In prepare")
     }
     
-
+*/
+		
 }
+}
+

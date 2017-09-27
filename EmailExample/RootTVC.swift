@@ -24,6 +24,11 @@ class RootTVC: UITableViewController {
     var delegate: CellSelectedDelegate?
 	var delegate2: DataUpdateDelegate?
 	
+	@IBAction func addEmailz(_ sender: UIBarButtonItem) {
+		let test = Email(sender: "asu@asu.edu", subject: "Spam", contents: "Spam")
+		
+		emails.append(test)
+	}
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,14 +153,19 @@ class RootTVC: UITableViewController {
     }
     */
 
-    /*
+	
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-    }
-    */
+		let destVC2 = segue.destination as! MenuTVC
+		
+		destVC2.delegate2 = delegate2
 
+    }
+	
+
+	
 }

@@ -144,6 +144,14 @@
                             <outlet property="delegate" destination="L9c-r4-5g4" id="nUy-yI-OWk"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="+" id="6JW-BQ-h9y">
+                            <connections>
+                                <action selector="addEmailz:" destination="L9c-r4-5g4" id="GTI-mt-f4a"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ax-63-TMw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

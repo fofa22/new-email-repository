@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let menuTVC = navVC.viewControllers[0] as! MenuTVC
         
         let test = Email(sender: "asu@asu.edu", subject: "Spam", contents: "Spam")
-        menuTVC.dataDictionary = ["Inbox":[Email(sender: "fellow.student@asu.edu", subject: "Project Question", contents: "Hi help me please"),Email(sender: "fellow.student@asu.edu", subject: "Project", contents: "Hi there how are you? "), Email(sender: "fellow.student@asu.edu", subject: "lecture assignment", contents: "Here is the lectrure assignment ")], "Sent":[Email(sender: "prof@asu.edu", subject: "Homework", contents: "Hi turn it in please"),Email(sender: "my.student@asu.edu", subject: "Project Question", contents: "can you add me to your linkedIn please")], "Trash":[Email(sender: "alert@asu.edu", subject: "Bees", contents: "Hi help me please there are bees")]]
+        menuTVC.dataDictionary = ["Inbox":[Email(sender: "fellow.student@asu.edu", subject: "Project Question", contents: "Hi help me please"),Email(sender: "fellow.student@asu.edu", subject: "Project", contents: "Hi there how are you? "), Email(sender: "fellow.student@asu.edu", subject: "lecture assignment", contents: "Here is the lectrure assignment ")], "Sent":[Email(sender: "asu@asu.edu", subject: "Spam", contents: "Spam"),Email(sender: "asu@asu.edu", subject: "Spam", contents: "Spam"),Email(sender: "prof@asu.edu", subject: "Homework", contents: "Hi turn it in please"),Email(sender: "my.student@asu.edu", subject: "Project Question", contents: "can you add me to your linkedIn please")], "Trash":[Email(sender: "alert@asu.edu", subject: "Bees", contents: "Hi help me please there are bees"),Email(sender: "alert@asu.edu", subject: "Bees", contents: "Hi help me please there are bees"),Email(sender: "alert@asu.edu", subject: "Bees", contents: "Hi help me please there are bees")]]
         
         /*
         rootTVC.emails.append(Email(sender: "fellow.student@asu.edu", subject: "Project Question", contents: "Hi help me please"))
@@ -39,13 +39,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		menuTVC.delegate = detailVC
 		
-		//menuTVC.delegate2 = menuTVC as! DataUpdateDelegate!
-		// _ = UIBarButtonItem(barButtonSystemItem: .add, target: RootTVC(),action: #selector(getter: menuTVC.previewActionItems)
-
-		
-		
-	return true
-	
+		// menuTVC.delegate2 = menuTVC as! DataUpdateDelegate!
+        
+        return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
