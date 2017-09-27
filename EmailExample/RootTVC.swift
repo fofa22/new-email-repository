@@ -12,9 +12,8 @@ protocol CellSelectedDelegate{
     func read(email: Email)
 }
 protocol DataUpdateDelegate {
-	func delete (emails: [Email], currentEmail : Email, indexPath : IndexPath)
-	func send (emails: [Email], currentEmail : Email)
-	func AddEmail(emails: [Email], currentEmail : Email, indexPath : IndexPath)
+	func delete(emails: [Email], DeeletedEdamil: [Email])
+	func send (emails: [Email])
 	
 }
 
@@ -29,13 +28,17 @@ class RootTVC: UITableViewController {
 		
 		emails.append(test)
 	}
-
+	// Inserting
+	func Addemail() {
+		tableView.insertRows(at: [], with: .fade)
+		let test = Email(sender: "asu@asu.edu", subject: "Spam", contents: "Spam")
+		emails.append(test)
+		tableView.reloadData()
+		delegate2?.send(emails: emails)
+	}
     override func viewDidLoad() {
         super.viewDidLoad()
-		self.navigationItem.title = "Inbox"
-		//self.navigationItem.title = "Trash"
-		//self.navigationItem.title = "Sent"
-			//self.navigationItem.title = keywords[indexPath.row]
+	
 		
 		
 		// "YourTitle"
@@ -43,10 +46,12 @@ class RootTVC: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-         self.navigationItem.rightBarButtonItem = self.editButtonItem
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
 	
 				
     }
+	
+	
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -72,6 +77,9 @@ class RootTVC: UITableViewController {
         
         let selectedEmail = emails[indexPath.row]
         delegate?.read(email: selectedEmail)
+		
+		//Making the send button
+		
 	
     }
 
@@ -89,50 +97,44 @@ class RootTVC: UITableViewController {
     }
     
 
-    /*
+	
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+
 
 	
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 		
         if editingStyle == .delete {
-            // Delete the row from the data source
-			// let keywords = Array(dataDictionary.keys)
-			//let selectedEmail = emails[]
-			/*
-			let TrashIndex = keywords.i
-			// index(of: "Trash")
-			print(TrashIndex!)
-*/
 			
-			let selectedEmail = emails[indexPath.row]
-			emails.remove(at: indexPath.row)
-			 delegate2?.delete(emails: emails, currentEmail: selectedEmail, indexPath: indexPath )
-			delegate2?.send(emails: emails, currentEmail: selectedEmail)
+			var DeletedEmail = [emails.remove(at: indexPath.row)]
+			
+			delegate2?.delete(emails: emails, DeeletedEdamil: DeletedEmail)
+
             tableView.deleteRows(at: [indexPath], with: .fade)
-			tableView.reloadRows(at: [indexPath], with: .none)
-			
+			//tableView.reloadRows(at: [indexPath], with: .none)
+			//tableView.reloadData()
 			
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
 			
-			
+			/*
 			let test = Email(sender: "asu@asu.edu", subject: "Spam", contents: "Spam")
 			
 			emails.append(test)
 			
 			emails.insert(test, at: indexPath.row)
+			
 			tableView.insertRows(at: [indexPath], with: .automatic)
-			delegate2?.AddEmail(emails: emails, currentEmail: test, indexPath: indexPath )
 			
+			delegate2?.send(emails: emails)
+			*/
+			print("Do nothing")
 			
-			//tableView.insertRows(at: [indexPath.row], with: .fade)
         }    
     }
 
@@ -161,7 +163,6 @@ class RootTVC: UITableViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
 		let destVC2 = segue.destination as! MenuTVC
-		
 		destVC2.delegate2 = delegate2
 
     }

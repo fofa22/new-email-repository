@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, CellSelectedDelegate, DataUpdateDelegate{
+class ViewController: UIViewController, CellSelectedDelegate{
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var senderLabel: UILabel!
     @IBOutlet weak var contentsLabel: UILabel!
@@ -30,16 +30,19 @@ class ViewController: UIViewController, CellSelectedDelegate, DataUpdateDelegate
         senderLabel.text = email.sender
         contentsLabel.text = email.contents
     }
+	
 	func delete (emails: [Email], currentEmail : Email, indexPath : IndexPath){
 		//dataDictionary.remove(at: dataDictionary<"Inbox", emails<currentEmail>>.indexPath)
-		var emails = emails
+	var emails = emails
 		delete(currentEmail)
-		
-		emails.remove(at: indexPath.row)
+	
 		
 	}
-	func send (emails: [Email], currentEmail : Email){
-		send(emails: emails, currentEmail: currentEmail)
+	
+	func send (emails: [Email], SelectedEmail : Email, indexPath : IndexPath){
+		var emails = emails
+		
+		emails.append(SelectedEmail)
 	}
 	
 	func AddEmail(emails: [Email], currentEmail : Email, indexPath : IndexPath){

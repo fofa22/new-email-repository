@@ -8,13 +8,17 @@
 
 import UIKit
 
-class MenuTVC: UITableViewController{
+class MenuTVC: UITableViewController, DataUpdateDelegate{
     
     var dataDictionary: [String:Array<Email>] = [:]
     var selectedRow = ""
 	var delegate : CellSelectedDelegate?
 	var delegate2: DataUpdateDelegate?
 	 var emails = [Email]()
+	var EmailDeleted = [Email]()
+
+	
+	
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +29,17 @@ class MenuTVC: UITableViewController{
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+	
+	func send(emails: [Email]) {
+		dataDictionary[selectedRow] = emails
+	}
+	func delete(emails: [Email], DeeletedEdamil: [Email]) {
+		dataDictionary[selectedRow] = emails
+		EmailDeleted = DeeletedEdamil
+		
+		
+		
+	}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -123,17 +138,34 @@ class MenuTVC: UITableViewController{
 		destVC.delegate = delegate
 		
 		// new
-	/*
-	let destVC2 = segue.destination as! RootTVC
-		destVC2.emails = dataDictionary[selectedRow]!
+
+				if ( selectedRow == "Sent"){
+					let Addition = UIBarButtonItem(barButtonSystemItem: .add, target: destVC, action: #selector(destVC.Addemail))
+					destVC.navigationItem.rightBarButtonItem = Addition
+		}
+		if ( selectedRow == "Inbox"){
+			
+			destVC.navigationItem.rightBarButtonItem = destVC.editButtonItem
+			
+					}
 		
 		
-		 destVC2.delegate2 = delegate2
-        
-        print("In prepare")
-    }
-    
-*/
+	
+		if (selectedRow == "Trash"){
+		if ( EmailDeleted.isEmpty != true ){
+			var R = 0
+			
+			dataDictionary[selectedRow]?.append(EmailDeleted[R])
+			
+			destVC.emails = dataDictionary[selectedRow]!
+		//EmailDeleted.removeAll()
+			R = R + 1
+		}
+	}
+	
+		destVC.navigationItem.title = selectedRow
+		destVC.delegate2 = self
+		
 		
 }
 }
