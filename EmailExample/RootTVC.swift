@@ -111,7 +111,11 @@ class RootTVC: UITableViewController {
 		
         if editingStyle == .delete {
 			
-			var DeletedEmail = [emails.remove(at: indexPath.row)]
+			var DeletedEmail = [Email]()
+			var deletedMail = emails.remove(at: indexPath.row)
+			
+			 DeletedEmail.append(deletedMail)
+			
 			
 			delegate2?.delete(emails: emails, DeeletedEdamil: DeletedEmail)
 

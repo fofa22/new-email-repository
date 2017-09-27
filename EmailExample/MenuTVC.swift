@@ -150,16 +150,19 @@ class MenuTVC: UITableViewController, DataUpdateDelegate{
 					}
 		
 		
-	
+	var R = 0
+		
 		if (selectedRow == "Trash"){
 		if ( EmailDeleted.isEmpty != true ){
-			var R = 0
+			
 			
 			dataDictionary[selectedRow]?.append(EmailDeleted[R])
+			
 			
 			destVC.emails = dataDictionary[selectedRow]!
 		
 			R = R + 1
+			
 			EmailDeleted.removeAll()
 		}
 	}
