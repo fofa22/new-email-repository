@@ -158,8 +158,9 @@ class MenuTVC: UITableViewController, DataUpdateDelegate{
 			dataDictionary[selectedRow]?.append(EmailDeleted[R])
 			
 			destVC.emails = dataDictionary[selectedRow]!
-		//EmailDeleted.removeAll()
+		
 			R = R + 1
+			EmailDeleted.removeAll()
 		}
 	}
 	
