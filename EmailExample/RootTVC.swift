@@ -39,9 +39,8 @@ class RootTVC: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
          self.navigationItem.rightBarButtonItem = self.editButtonItem
-		
-		
-
+	
+				
     }
 
     override func didReceiveMemoryWarning() {
@@ -99,21 +98,32 @@ class RootTVC: UITableViewController {
 		
         if editingStyle == .delete {
             // Delete the row from the data source
+			// let keywords = Array(dataDictionary.keys)
+			//let selectedEmail = emails[]
+			/*
+			let TrashIndex = keywords.i
+			// index(of: "Trash")
+			print(TrashIndex!)
+*/
+			
 			let selectedEmail = emails[indexPath.row]
 			emails.remove(at: indexPath.row)
 			 delegate2?.delete(emails: emails, currentEmail: selectedEmail, indexPath: indexPath )
 			delegate2?.send(emails: emails, currentEmail: selectedEmail)
             tableView.deleteRows(at: [indexPath], with: .fade)
+			tableView.reloadRows(at: [indexPath], with: .none)
 			
 			
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+			
 			
 			let test = Email(sender: "asu@asu.edu", subject: "Spam", contents: "Spam")
 			
 			emails.append(test)
 			
 			emails.insert(test, at: indexPath.row)
+			tableView.insertRows(at: [indexPath], with: .automatic)
 			delegate2?.AddEmail(emails: emails, currentEmail: test, indexPath: indexPath )
 			
 			
@@ -122,12 +132,13 @@ class RootTVC: UITableViewController {
     }
 
 
-    /*
+	/*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+		
     }
-    */
+*/
+	
 
     /*
     // Override to support conditional rearranging of the table view.

@@ -124,8 +124,9 @@ class MenuTVC: UITableViewController{
 		
 		// new
 		
-		let destVC2 = segue.destination as! RootTVC
+	let destVC2 = segue.destination as! RootTVC
 		destVC2.emails = dataDictionary[selectedRow]!
+		
 		
 		 destVC2.delegate2 = delegate2
         

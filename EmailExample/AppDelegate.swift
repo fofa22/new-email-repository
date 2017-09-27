@@ -39,9 +39,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		menuTVC.delegate = detailVC
 		
-		// menuTVC.delegate2 = menuTVC as! DataUpdateDelegate!
-        
-        return true
+		//menuTVC.delegate2 = menuTVC as! DataUpdateDelegate!
+		// _ = UIBarButtonItem(barButtonSystemItem: .add, target: RootTVC(),action: #selector(getter: menuTVC.previewActionItems)
+
+		
+		
+	return true
+	
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
